@@ -54,7 +54,7 @@ class Person:
     
 
 if __name__ == "__main__":
-    user = input("Enter your email: ")
+    user = input("Enter your username: ")
     p  = Person(user)
 
 
