@@ -91,7 +91,7 @@ class Person:
         """Allows private user to accept or reject another student as friend."""
         self._incoming_reqs["Friends"].remove(student)
         student._outgoing_reqs["Friends"].remove(student)
-        
+
         if accept == True:
             self.friends_list.append(student)
             student.friends_list.append(self)
@@ -151,9 +151,9 @@ if __name__ == "__main__":
     print(f"{user1.usr} wants to be friends with {user2.usr}")
     if user1 not in user2.friends_list:
         user1.add_friend(user2)
-    print("USER1", user1._outgoing_reqs)
+    print("USER1", user1._incoming_reqs, user1._outgoing_reqs)
     print()
-    print("USER2", user2._incoming_reqs)
+    print("USER2", user2._incoming_reqs, user2._outgoing_reqs)
     print()
 
     print(f"{user2.usr} accepts {user1.usr}'s friend request.")
@@ -161,7 +161,7 @@ if __name__ == "__main__":
 
     print("USER1", user1._incoming_reqs, user1._outgoing_reqs)
     print()
-    print("USER2", user2._incoming_reqs, user2._outgoing_reqs, )
+    print("USER2", user2._incoming_reqs, user2._outgoing_reqs)
     print()
 
     print("USER1", user1.friends_list)
