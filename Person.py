@@ -3,8 +3,8 @@ import re
 class Person:
     num_ppl = 0
 
-    def __init__(self, usr:str):
-        """Initializes Person class."""
+    def __init__(self, usr:str) -> None:
+        """Initializes student's username and account information."""
         while usr.strip() == "":
             print("Invalid username.")
             usr = input("Enter username: ")
@@ -20,12 +20,12 @@ class Person:
         self._outgoing_reqs = {"Friends": [], "Study Rooms": []}
 
         # if person not in database:
-        self.make_acc()
+        self._make_acc()
 
         # else:
-        # self.load_acc()
+        # self._load_acc()
 
-    def make_acc(self):
+    def _make_acc(self) -> None:
         """Creates account details."""
         # Create password
         pwd = input("Enter password (8-24 chars): ")
@@ -57,28 +57,36 @@ class Person:
             email = input("Enter email: ")
         self.email = email
 
-        # TO DO: Add information to the larger database
+        # TO DO: Add student info to the larger database
 
-    def load_acc(self): #, database
+    def _load_acc(self) -> None: #, database):
         pass
-        # self.private = True
+        # self.private = 
         # self._pwd =
         # self.first_name =
         # self.last_name =
         # self.email = 
         # self.schedule =
-        # self.study_list = []=
-        # self._incoming_reqs = {"Friends": [], "Study Rooms": []}
-        # self._outgoing_reqs = {"Friends": [], "Study Rooms": []}
+        # self.study_list =
+        # self._incoming_reqs = 
+        # self._outgoing_reqs =
         
 
-    def change_privacy(self, private=None):
+    def get_incoming(self) -> dict:
+        """Returns student's incoming requests."""
+        return self._incoming_reqs
+
+    def get_outgoing(self) -> dict:
+        """Returns student's outgoing requests."""
+        return self._outgoing_reqs
+
+    def change_privacy(self, private=None) -> None:
         """Allows user to change account privacy."""
         if private != None:
             self.private = private
         
 
-    def add_friend(self, student:"Person"):
+    def add_friend(self, student:"Person") -> None:
         """Allows user to add another student as friend or send them a friend request."""
         if student.private:
             self._outgoing_reqs["Friends"].append(student)
@@ -87,7 +95,7 @@ class Person:
             self.friends_list.append(student)
             student.friends_list.append(self)
 
-    def acc_or_rej(self, student:"Person", accept:bool):
+    def acc_or_rej(self, student:"Person", accept:bool) -> None:
         """Allows private user to accept or reject another student as friend."""
         self._incoming_reqs["Friends"].remove(student)
         student._outgoing_reqs["Friends"].remove(student)
@@ -99,7 +107,7 @@ class Person:
             self._outgoing_reqs["Friends"].remove(student)
     
 
-    def send_study_req(self, student:"Person"):
+    def send_study_req(self, student:"Person") -> None:
         """Allows user to send another student a study request."""
         if student.private and student not in self.friends_list:
             print(f"{student.usr} is a private account.")
@@ -114,7 +122,7 @@ class Person:
             # return
 
 
-    def view_mutuals(self, friend:"Person"): # shows automatically if user is private
+    def view_mutuals(self, friend:"Person") -> list: # shows automatically if user is private
         """Displays the same """
         if not friend.private:
             return list(set(self.friends_list) & set(friend.friends_list))
@@ -125,7 +133,7 @@ class Person:
 
 if __name__ == "__main__":
 
-    def show_info(user):
+    def show_info(user:Person) -> None:
         print(f"INFO ABOUT {user.usr}")
         print("PRIVACY", user.private)
         print("FRIENDS", user.friends_list)
@@ -136,7 +144,6 @@ if __name__ == "__main__":
         print("OUTGOING REQS")
         for i in user._outgoing_reqs:
             print(i, user._outgoing_reqs[i])
-
     
     user_1 = input("Enter your username: ")
     user1 = Person(user_1)
