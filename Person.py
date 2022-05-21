@@ -19,7 +19,7 @@ class Person:
 
     def make_acc(self):
         """Creates account details."""
-        self.pwd = input("Enter password: ")
+        self._pwd = input("Enter password: ")
         self.first_name = input("Enter first name: ")
         self.last_name = input("Enter last name: ")
 
@@ -30,63 +30,52 @@ class Person:
             email = input("Enter email: ")
         self.email = email
 
-        self._schedule = None #Calendar() object?
-        self._friend_list = set()
+        self.schedule = None #Calendar() object?
+        self.friends_list = []
         self._pending_reqs = []
         self._study_reqs = []
         self._updates = []   # list??
-        self._private = True
+        self.private = True
 
     def retrieve_acc(self): #, database
         pass
-        # self.pwd =
+        # self._pwd =
         # self.first_name =
         # self.last_name =
         # self.email = 
-        # self._schedule =
-        # self._friend_list =
+        # self.schedule =
+        # self.friends_list =
         # self._pending_reqs =
         # self._study_reqs =
         # self._updates =
-        # self._private = 
+        # self.private = 
 
-
-    def view_friends(self):
-        """Displays current friends."""
-        return self._friend_list
-    
-    def view_friend_reqs(self):
-        """Displays pending friend requests."""
-        return self._pending_reqs
-
-    def view_study_reqs(self):
-        return self._study_reqs
-
-    def view_updates(self):
-        """Displays all new updates (all requests)."""
-        return self._updates
-    
-    def get_privacy(self):
-        return self._private
 
     def change_privacy(self, new=None):
+        """Allows user to change privacy"""
         if new == "private":
-            self._private = True
+            self.private = True
         elif new == "public":
-            self._private = False
+            self.private = False
 
-    def send_friend_req(self, friend):
-        # send request to friend 
-        pass
+    def send_friend_req(self, student):
+        """Send friend request to desired friend."""
+        # TRUE: self.usr not in student.friends_list
+        if student.private:
+            student._pending_reqs.append(self.usr)
+        else:
+            self.friends_list.append(student.usr)
 
-    def send_study_req(self, friend):
-        # friend.get_privacy == False
+
+    def send_study_req(self, student):
+        
+        # student.private == False or student in self.friends_list
         # check if times are free
         # send study req to friend
-        pass
+        student.
 
     def view_mutuals(self, friend:"Person"):
-        return self._friend_list & friend._friend_list
+        return self.friends_list & friend.friends_list
     
 
 if __name__ == "__main__":
@@ -96,9 +85,5 @@ if __name__ == "__main__":
     print(user1.ppl_count)
     # make private
 
-    def user2(user, user1):
-        p = Person(user)
-        print(p.ppl_count)
-    
-    user2(user, user1)
+    user2 = Person(user)
 
