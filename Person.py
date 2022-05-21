@@ -12,7 +12,7 @@ class Person:
         Person.num_ppl += 1
 
         # Setup default account information
-        self.schedule = None # <--- Calendar() object?
+        self.schedule = None # <--- Calendar() object? visible to others if public
         self.friends_list = []
         self.study_list = []
         self._incoming_reqs = {"Friends": [], "Study Rooms": []}
@@ -114,9 +114,13 @@ class Person:
             # return
 
 
-    def view_mutuals(self, friend:"Person"):
-        mutuals = set(self.friends_list) & set(friend.friends_list)
-        return list(mutuals)
+    def view_mutuals(self, friend:"Person"): # shows automatically if user is private
+        """Displays the same """
+        if not friend.private:
+            return list(set(self.friends_list) & set(friend.friends_list))
+        # else:
+        # print(f"{student.usr} is private."}
+        # return
     
 
 if __name__ == "__main__":
