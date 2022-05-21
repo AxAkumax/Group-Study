@@ -3,8 +3,6 @@ import Table
 import urllib.request
 import json
 
-# a dictionary looking like this:
-# {'Monday': Table, 'Tuesday': Table, 'Wednesday': Table, 'Thursday': Table, 'Friday': Table}
 weekly_schedule = {'M': Table.Table(1), 'Tu': Table.Table(1), 'W': Table.Table(1), 'Th': Table.Table(1), 'F': Table.Table(1)}
 # for i in range(5):
 #     weekly_schedule[calendar.day_name[i]] = Table.Table(1)
@@ -38,7 +36,7 @@ def process_meet_days(days):
 
 
 # given a course code, returns a course object with information about it
-def addCourse(course_code):
+def getCourse(course_code):
     term = '2022Fall'
     url = f'https://api.peterportal.org/rest/v0/schedule/soc?term={term}&sectionCodes={course_code}'
 
