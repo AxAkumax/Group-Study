@@ -1,17 +1,21 @@
 import re
 
 class Person:
-    # ppl_count = 0 <-- move somewhere else
+    ppl_count = 0
 
     def __init__(self, usr):
         """Initializes Person class with username."""
         while usr.strip() == "":
             print("Invalid username.")
             usr = input("Enter username: ")
-        
         self.usr = usr
-        # self.ppl_count += 1 <-- move somewhere else
+        Person.ppl_count += 1
+
+        # if person not in database:
         self.make_acc()
+
+        # else:
+        # self.retrieve_acc()
 
     def make_acc(self):
         """Creates account details."""
@@ -32,6 +36,20 @@ class Person:
         self._study_reqs = []
         self._updates = []   # list??
         self._private = True
+
+    def retrieve_acc(self): #, database
+        pass
+        # self.pwd =
+        # self.first_name =
+        # self.last_name =
+        # self.email = 
+        # self._schedule =
+        # self._friend_list =
+        # self._pending_reqs =
+        # self._study_reqs =
+        # self._updates =
+        # self._private = 
+
 
     def view_friends(self):
         """Displays current friends."""
@@ -74,8 +92,13 @@ class Person:
 if __name__ == "__main__":
 
     user = input("Enter your username: ")
-    p  = Person(user)
-    z = Person("heee")
+    user1 = Person(user)
+    print(user1.ppl_count)
+    # make private
 
-    print(p.__dict__)
+    def user2(user, user1):
+        p = Person(user)
+        print(p.ppl_count)
+    
+    user2(user, user1)
 
