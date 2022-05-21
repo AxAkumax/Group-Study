@@ -1,3 +1,4 @@
+from tabulate import tabulate
 #The following module contains a class and its member functions associating with a Table
 #The Table Class contains a 24-max schedule on an hourly basis for users to make their schedule
 
