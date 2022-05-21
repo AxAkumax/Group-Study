@@ -1,12 +1,11 @@
 import calendar
-import Table
+from Table import Table
 import urllib.request
 import json
 
-weekly_schedule = {'M': Table.Table(1), 'Tu': Table.Table(1), 'W': Table.Table(1), 'Th': Table.Table(1), 'F': Table.Table(1)}
+weekly_schedule = {'M': Table(1), 'Tu': Table(1), 'W': Table(1), 'Th': Table(1), 'F': Table(1)}
 # for i in range(5):
 #     weekly_schedule[calendar.day_name[i]] = Table.Table(1)
-
 
 class Course:
     def __init__(self, name, time, meet_days):
