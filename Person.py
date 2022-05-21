@@ -16,6 +16,8 @@ class Person:
         self._schedule = None # <--- Calendar() object? visible to others if public
         self.friends_list = []
         self.study_list = [] # ???
+
+        # move to database . . . ?
         self._incoming_reqs = {"Friends": [], "Study Rooms": []}
         self._outgoing_reqs = {"Friends": [], "Study Rooms": []}
 
