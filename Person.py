@@ -12,12 +12,12 @@ class Person:
         Person.num_ppl += 1
 
         # Setup default account information
+        self.private = True
         self.schedule = None # <--- Calendar() object? visible to others if public
         self.friends_list = []
         self.study_list = []
         self._incoming_reqs = {"Friends": [], "Study Rooms": []}
         self._outgoing_reqs = {"Friends": [], "Study Rooms": []}
-        self.private = True
 
         # if person not in database:
         self.make_acc()
@@ -61,16 +61,16 @@ class Person:
 
     def load_acc(self): #, database
         pass
+        # self.private = True
         # self._pwd =
         # self.first_name =
         # self.last_name =
         # self.email = 
         # self.schedule =
-        # self.friends_list =
-        # self._pending_reqs =
-        # self._study_reqs =
-        # self._updates =
-        # self.private = 
+        # self.study_list = []=
+        # self._incoming_reqs = {"Friends": [], "Study Rooms": []}
+        # self._outgoing_reqs = {"Friends": [], "Study Rooms": []}
+        
 
     def change_privacy(self, private=None):
         """Allows user to change account privacy."""
@@ -172,10 +172,3 @@ if __name__ == "__main__":
     print()
     print("USER2", user2.friends_list)
     print()
-
-
-
-
-
-
-
