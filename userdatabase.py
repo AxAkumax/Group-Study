@@ -21,7 +21,7 @@ def addUser(p: Person):
             u'last name': p.last_name,
             u'private': p.private,
             u'schedule': p.schedule,
-            #u'friends list': p.friends_list,
+            # u'friends list': p.friends_list,
             u'study list': p.study_list,
             #u'incoming reqs': p.get_incoming(),
             #u'outgoing reqs': p.get_outgoing(),
