@@ -21,9 +21,6 @@ class Person:
          """Returns student's schedule."""
          return self._schedule
     
-
-
-    
     
     
 
