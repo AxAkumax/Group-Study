@@ -1,34 +1,47 @@
 import re
 
+
 class Person:
-    num_ppl = 0
+    num_users = 0
 
-    def __init__(self, usr:str) -> None:
-        """Initializes student's username and account information."""
-        while usr.strip() == "":
-            print("Invalid username.")
-            usr = input("Enter username: ")
-        self._usr = usr
-        Person.num_ppl += 1
-
+    def __init__(self, create_acc:bool) -> None: # usr:str) -> None:
+        """Initializes student's account information. Email functions as username."""
         # Setup default account information
-        self.private = True
+        self.private = True # acc is private by default
         self._schedule = None # <--- Calendar() object? visible to others if public
         self.friends_list = []
         self.study_list = [] # ???
+
+        if create_acc:
+            self._make_acc()
+        else:
+            self._load_acc()
+        
+        # while usr.strip() == "":
+            # print("Invalid username.")
+            # usr = input("Enter username: ")
+        # self._usr = usr
+
+        Person.num_users += 1
 
         # move to database . . . ?
         self._incoming_reqs = {"Friends": [], "Study Rooms": []}
         self._outgoing_reqs = {"Friends": [], "Study Rooms": []}
 
-        # if person not in database:
-        self._make_acc()
-
-        # else:
-        # self._load_acc()
-
     def _make_acc(self) -> None:
         """Creates account details."""
+        # Create email address
+        valid_email = "^[A-Za-z]+@[A-Za-z]+[.][A-Za-z]+$"
+        email = input("Enter email: ")
+        while not re.match(valid_email, email):
+            print("Invalid email.")
+            email = input("Enter email: ")
+        
+        # Verify email is not already in server
+            # if email in server:
+                # print(f"{email} is already in use.")
+        self.email = email
+
         # Create password
         pwd = input("Enter password (8-24 chars): ")
         while not len(pwd) in range(8,25) or " " in pwd:
@@ -51,35 +64,41 @@ class Person:
             first_name = input("Enter last name: ")
         self.last_name = last_name
 
-        # Create email address
-        valid_email = "^[A-Za-z]+@[A-Za-z]+[.][A-Za-z]+$"
-        email = input("Enter email: ")
-        while not re.match(valid_email, email):
-            print("Invalid email.")
-            email = input("Enter email: ")
-        self.email = email
-
-        # TO DO: Add student info to the larger database
+        # TO DO: Add student account to the larger database
 
     def _load_acc(self) -> None: #, database):
         pass
-        # self.private = 
-        # self._pwd =
-        # self.first_name =
-        # self.last_name =
-        # self.email = 
-        # self._schedule =
-        # self.study_list =
-        # self._incoming_reqs = 
-        # self._outgoing_reqs =
-    
-    def get_usr(self) -> str:
-        """Returns student's username."""
-        return self._usr
+        # if email not in database:
+        # print("Email not found.")
 
+        # else:
+            # pwd = input("Enter password: ")
+            # while input pwd != pwd in database:
+                # print("Incorrect password.")
+                # pwd = input("Enter password: ")
+            
+            # self.email = 
+            # self._pwd = 
+            # self.first_name =
+            # self.last_name =
+
+            # self.private = 
+            # self._schedule =
+            # self.friends_list =
+            # self.study_list =
+            # self.study_list =
+
+            # self._incoming_reqs = 
+            # self._outgoing_reqs =
+    
+    def get_email(self) -> str:
+        """Returns student's email address."""
+        return self.email
+    
     def get_schedule(self) -> str:
         """Returns student's schedule."""
         return self._schedule
+
     def get_friends_list(self) -> list:
         return self.friends_list
 
@@ -120,7 +139,7 @@ class Person:
     def send_study_req(self, student:"Person") -> None:
         """Allows user to send another student a study request."""
         if student.private and student not in self.friends_list:
-            print(f"{student.get_usr()} is a private account.")
+            print(f"{student.get_email()} is a private account.")
             return
 
         else:
@@ -128,8 +147,8 @@ class Person:
             self._outgoing_reqs["Study Rooms"].append(student)
             student._incoming_reqs["Study Rooms"].append(self)
             # else:
-            # print(f"{student.usr} is not available the same time that you are."}
-            # return
+                # print(f"{student.usr} is not available the same time that you are."}
+                # return
 
 
     def view_mutuals(self, friend:"Person") -> list: # shows automatically if user is private
@@ -144,7 +163,7 @@ class Person:
 if __name__ == "__main__":
 
     def show_info(user:Person) -> None:
-        print(f"INFO ABOUT {user.get_usr()}")
+        print(f"INFO ABOUT {user.get_email()}")
         print("PRIVACY", user.private)
         print("FRIENDS", user.get_friends_list())
         print("STUDY LIST", user.study_list)
@@ -158,7 +177,7 @@ if __name__ == "__main__":
     user_1 = input("Enter your username: ")
     user1 = Person(user_1)
     
-    print(f"{user1.get_usr()} becomes public.")
+    print(f"{user1.get_email()} becomes public.")
     user1.change_privacy(private=False)
 
     user_2 = input("Enter your username: ")
@@ -169,7 +188,7 @@ if __name__ == "__main__":
     show_info(user2)
     print()
 
-    print(f"{user1.get_usr()} wants to be friends with {user2.get_usr()}")
+    print(f"{user1.get_email()} wants to be friends with {user2.get_email()}")
     if user1 not in user2.get_friends_list():
         user1.add_friend(user2)
     print("USER1", user1.get_incoming(), user2.get_outgoing())
@@ -177,7 +196,7 @@ if __name__ == "__main__":
     print("USER2", user2.get_incoming(), user2.get_outgoing())
     print()
 
-    print(f"{user2.get_usr()} accepts {user1.get_usr()}'s friend request.")
+    print(f"{user2.get_email()} accepts {user1.get_email()}'s friend request.")
     user2.acc_or_rej(user1, True)
 
     print("USER1", user1.get_incoming(), user1.get_outgoing())
