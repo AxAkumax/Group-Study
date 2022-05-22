@@ -86,6 +86,7 @@ class Table:
             start, end = self.convert_string_to_decimal(value1),self.convert_string_to_decimal(value2)
             self.array_schedule_times(start,i.get_name())
 
+        return self._schedule
             # from 12:00AM-6:00PM = you get start = 12:00 & end =6:00
             
     #_____________________________helper functions for the schedule________________________________________
