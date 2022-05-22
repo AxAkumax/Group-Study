@@ -1,18 +1,24 @@
 import re
+from sys import ps1
 from urllib.parse import _NetlocResultMixinBytes
 import userdatabase as user_db
 
 class Person:
-    num_users = 0
+    #num_users = 0
 
-    def __init__(self):
-        self.email = "student@gmail.com"
+    def __init__(self, email):
+        """Initializes student's account information. Email functions as username."""
+        self.email = email
         self._pwd = "mypwd123"
         self.first_name = "Bob"
         self.last_name = "Bobbyson"
         self.private = True
         self.schedule =  None
         self.study_list = []
+        #Person.num_users +=1
+
+    
+    
     
 
 
@@ -27,7 +33,7 @@ class Person:
     #     self.study_list = [] # ???
 
     #def __init__(self, usr: str, create_acc:bool) -> None: # usr:str) -> None:
-        """Initializes student's account information. Email functions as username."""
+        #"""Initializes student's account information. Email functions as username."""
         # Setup default account information
         #self.private = True # acc is private by default
         #self._schedule = None # <--- Calendar() object? visible to others if public
@@ -207,50 +213,51 @@ class Person:
     
 
 if __name__ == "__main__":
-
-    def show_info(user:Person) -> None:
-        print(f"INFO ABOUT {user.get_email()}")
-        print("PRIVACY", user.private)
-        print("FRIENDS", user.get_friends_list())
-        print("STUDY LIST", user.study_list)
-        print("INCOMING REQS")
-        for i in user.get_incoming():
-            print(i, user.get_incoming()[i])
-        print("OUTGOING REQS")
-        for i in user.get_outgoing():
-            print(i, user.get_outgoing()[i])
+    p1 = Person("user1@gmail.com")
+    p2 = Person("user2@gmail.com")
+    # def show_info(user:Person) -> None:
+    #     print(f"INFO ABOUT {user.get_email()}")
+    #     print("PRIVACY", user.private)
+    #     print("FRIENDS", user.get_friends_list())
+    #     print("STUDY LIST", user.study_list)
+    #     print("INCOMING REQS")
+    #     for i in user.get_incoming():
+    #         print(i, user.get_incoming()[i])
+    #     print("OUTGOING REQS")
+    #     for i in user.get_outgoing():
+    #         print(i, user.get_outgoing()[i])
     
-    user_1 = input("Enter your email: ")
-    user1 = Person(user_1)
+    # user_1 = input("Enter your email: ")
+    # user1 = Person(user_1)
     
-    print(f"{user1.get_email()} becomes public.")
-    user1.change_privacy(private=False)
+    # print(f"{user1.get_email()} becomes public.")
+    # user1.change_privacy(private=False)
 
-    user_2 = input("Enter your email: ")
-    user2 = Person(user_2) # user2 is private
+    # user_2 = input("Enter your email: ")
+    # user2 = Person(user_2) # user2 is private
 
-    show_info(user1)
-    print()
-    show_info(user2)
-    print()
+    # show_info(user1)
+    # print()
+    # show_info(user2)
+    # print()
 
-    print(f"{user1.get_email()} wants to be friends with {user2.get_email()}")
-    if user1 not in user2.get_friends_list():
-        user1.add_friend(user2)
-    print("USER1", user1.get_incoming(), user2.get_outgoing())
-    print()
-    print("USER2", user2.get_incoming(), user2.get_outgoing())
-    print()
+    # print(f"{user1.get_email()} wants to be friends with {user2.get_email()}")
+    # if user1 not in user2.get_friends_list():
+    #     user1.add_friend(user2)
+    # print("USER1", user1.get_incoming(), user2.get_outgoing())
+    # print()
+    # print("USER2", user2.get_incoming(), user2.get_outgoing())
+    # print()
 
-    print(f"{user2.get_email()} accepts {user1.get_email()}'s friend request.")
-    user2.acc_or_rej(user1, True)
+    # print(f"{user2.get_email()} accepts {user1.get_email()}'s friend request.")
+    # user2.acc_or_rej(user1, True)
 
-    print("USER1", user1.get_incoming(), user1.get_outgoing())
-    print()
-    print("USER1", user2.get_incoming(), user2.get_outgoing())
-    print()
+    # print("USER1", user1.get_incoming(), user1.get_outgoing())
+    # print()
+    # print("USER1", user2.get_incoming(), user2.get_outgoing())
+    # print()
 
-    print("USER1", user1.get_friends_list())
-    print()
-    print("USER2", user2.get_friends_list())
-    print()
+    # print("USER1", user1.get_friends_list())
+    # print()
+    # print("USER2", user2.get_friends_list())
+    # print()
