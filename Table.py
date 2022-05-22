@@ -89,7 +89,9 @@ class Table:
             times = i.get_time().strip().split("-")
             value1,value2 = times[0],times[1]
             start, end = self.convert_string_to_decimal(value1,value2)
+            print(start,'-',end)
             self.array_schedule_times(start,i.get_name())
+            self.array_schedule_times(end,i.get_name())
 
         return self._schedule
             # from 12:00AM-6:00PM = you get start = 12:00 & end =6:00
@@ -109,8 +111,9 @@ class Table:
             hour = "PM"
         else:
             value1,value2 = end.strip().split(":")
+            new_end = float(value1)+(float(value2)/100)
         
-        value1,value2 =  value.strip().split(":")
+        value1,value2 =  start.strip().split(":")
         new_start = float(value1)+(float(value2)/100)
         
         if hour=="PM" and new_start<12:
@@ -126,7 +129,8 @@ class Table:
 
         for i in range(len(self._table_num)):
             if int(value)==int(self._table_num[i]):
-                self._schedule[self._str_times[i]].append(course_name)
+                if course_name not in self._schedule[self._str_times[i]]:
+                    self._schedule[self._str_times[i]].append(course_name)
 
     def reset(self):
         #reset the entire table 
