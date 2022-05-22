@@ -114,12 +114,6 @@ class Table:
         #print(new_start, "=",new_end)
         return (new_start,new_end)
 
-        print(value)
-        value = value[:len(value)-2]
-        print(value)
-        value1,value2 = value.strip().split(":")
-        print(value1,"-",value2)
-        return float(value1)+(float(value2)/100)
 
     def array_schedule_times(self,value:float, course_name:str):
         #takes a time and compares it with the time schedule and adds its it to the dictionary of times it falls under
