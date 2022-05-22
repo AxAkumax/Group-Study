@@ -9,7 +9,7 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 def addUser(p: Person):
-    doc_ref = db.collection(u'users').document(u'alovelace')
+    doc_ref = db.collection(u'users').document(p.email)
     doc_ref.set({
             u'email': p.email,
             u'password': p._pwd,
@@ -23,7 +23,10 @@ def addUser(p: Person):
             #u'outgoing reqs': p.get_outgoing(),
         })
 
-p = Person("boo")
+if __name__ == "__main__":
+    p1 = Person("user1@gmail.com")
+    p2 = Person("user2@gmail.com")
 
-addUser(p)
+    addUser(p1)
+    addUser(p2)
     
