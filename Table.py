@@ -81,9 +81,10 @@ class Table:
 
         for i in course_list:
             #type of i is a Course object
-            times = i.get_time().split("-")
+            #print(i.get_time())
+            times = i.get_time().strip().split("-")
             value1,value2 = times[0],times[1]
-            start, end = self.convert_string_to_decimal(value1),self.convert_string_to_decimal(value2)
+            start, end = self.convert_string_to_decimal(value1,value2)
             self.array_schedule_times(start,i.get_name())
 
         return self._schedule
@@ -122,7 +123,6 @@ class Table:
         for i in range(len(self._table_num)):
             if int(value)==int(self._table_num[i]):
                 self._schedule[self._str_times[i]].append(course_name)
-    #_____________________________________________________________________________________________________    
 
     def reset(self):
         #reset the entire table 
