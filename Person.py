@@ -4,6 +4,9 @@ import userdatabase as user_db
 class Person:
     num_users = 0
 
+    def __init__(self, email):
+        self.email = email
+
     # def __init__(self, create_acc:bool) -> None: # usr:str) -> None:
     #     """Initializes student's account information. Email functions as username."""
     #     # Setup default account information
