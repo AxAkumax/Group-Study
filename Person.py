@@ -7,12 +7,12 @@ from Table import Table
 class Person:
     #num_users = 0
 
-    def __init__(self, email):
+    def __init__(self, firstname, lastname, email, password):
         """Initializes student's account information. Email functions as username."""
         self.email = email
-        self._pwd = "mypwd123"
-        self.first_name = "Bob"
-        self.last_name = "Bobbyson"
+        self._pwd = password
+        self.first_name = firstname
+        self.last_name = lastname
         self.private = True
         self.schedule =  None # change to Calendar
         self.study_list = []

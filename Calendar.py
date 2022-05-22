@@ -4,7 +4,7 @@ from Course import Course
 import urllib.request
 import json
 
-weekly_schedule = {'M': Table(1), 'Tu': Table(1), 'W': Table(1), 'Th': Table(1), 'F': Table(1)}
+weekly_schedule = {'Monday': Table(1), 'Tuesday': Table(1), 'Wednesday': Table(1), 'Thursday': Table(1), 'Friday': Table(1)}
 # for i in range(5):
 #     weekly_schedule[calendar.day_name[i]] = Table.Table(1)
 
@@ -49,3 +49,4 @@ def getCourse(course_code):
     meetings = section['meetings'][0]
 
     return Course(course_name, meetings['time'], process_meet_days(meetings['days']))
+
