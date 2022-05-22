@@ -34,13 +34,13 @@ class Table:
         start = self._start_num
         while start<=self._end_num:
           value = (math.modf(start))[0]
-          print(value)
+          #print(value)
           if value+0.001>= 0.60:
               value1 = ((math.modf(start))[1])+1
               start = value1
           self._table_num.append(start)
           start+=self._time_spacing
-          print("start",start)
+          #print("start",start)
           
         return self._table_num
     
@@ -89,7 +89,7 @@ class Table:
             times = i.get_time().strip().split("-")
             value1,value2 = times[0],times[1]
             start, end = self.convert_string_to_decimal(value1,value2)
-            print(start,'-',end)
+            #print(start,'-',end)
             self.array_schedule_times(start,i.get_name())
             self.array_schedule_times(end,i.get_name())
 
