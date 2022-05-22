@@ -131,6 +131,21 @@ class Table:
             if int(value)==int(self._table_num[i]):
                 if course_name not in self._schedule[self._str_times[i]]:
                     self._schedule[self._str_times[i]].append(course_name)
+      
+    def build_schedule(self):
+        for key in self._schedule.keys():
+            string_value=""
+            if len(self._schedule[key])>0:
+                for i in self._schedule[key]:
+                    string_value+=str(i)+"\n"
+            self._schedule[key] = string_value
+        
+        main_array = list(self._schedule.items())
+        main_array.insert(0,("Hours","Classes/Work"))
+        self._table = tabulate(main_array, headers="firstrow",tablefmt="fancy_grid")
+        
+    def print_table(self):
+        print(self._table)    
 
     def reset(self):
         #reset the entire table 
