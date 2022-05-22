@@ -8,14 +8,16 @@ class Person:
         while usr.strip() == "":
             print("Invalid username.")
             usr = input("Enter username: ")
-        self.usr = usr
+        self._usr = usr
         Person.num_ppl += 1
 
         # Setup default account information
         self.private = True
-        self.schedule = None # <--- Calendar() object? visible to others if public
+        self._schedule = None # <--- Calendar() object? visible to others if public
         self.friends_list = []
-        self.study_list = []
+        self.study_list = [] # ???
+
+        # move to database . . . ?
         self._incoming_reqs = {"Friends": [], "Study Rooms": []}
         self._outgoing_reqs = {"Friends": [], "Study Rooms": []}
 
@@ -66,11 +68,20 @@ class Person:
         # self.first_name =
         # self.last_name =
         # self.email = 
-        # self.schedule =
+        # self._schedule =
         # self.study_list =
         # self._incoming_reqs = 
         # self._outgoing_reqs =
-        
+    
+    def get_usr(self) -> str:
+        """Returns student's username."""
+        return self._usr
+
+    def get_schedule(self) -> str:
+        """Returns student's schedule."""
+        return self._schedule
+    def get_friends_list(self) -> list:
+        return self.friends_list
 
     def get_incoming(self) -> dict:
         """Returns student's incoming requests."""
@@ -85,7 +96,6 @@ class Person:
         if private != None:
             self.private = private
         
-
     def add_friend(self, student:"Person") -> None:
         """Allows user to add another student as friend or send them a friend request."""
         if student.private:
@@ -110,7 +120,7 @@ class Person:
     def send_study_req(self, student:"Person") -> None:
         """Allows user to send another student a study request."""
         if student.private and student not in self.friends_list:
-            print(f"{student.usr} is a private account.")
+            print(f"{student.get_usr()} is a private account.")
             return
 
         else:
@@ -134,21 +144,21 @@ class Person:
 if __name__ == "__main__":
 
     def show_info(user:Person) -> None:
-        print(f"INFO ABOUT {user.usr}")
+        print(f"INFO ABOUT {user.get_usr()}")
         print("PRIVACY", user.private)
-        print("FRIENDS", user.friends_list)
+        print("FRIENDS", user.get_friends_list())
         print("STUDY LIST", user.study_list)
         print("INCOMING REQS")
-        for i in user._incoming_reqs:
-            print(i, user._incoming_reqs[i])
+        for i in user.get_incoming():
+            print(i, user.get_incoming()[i])
         print("OUTGOING REQS")
-        for i in user._outgoing_reqs:
-            print(i, user._outgoing_reqs[i])
+        for i in user.get_outgoing():
+            print(i, user.get_outgoing()[i])
     
     user_1 = input("Enter your username: ")
     user1 = Person(user_1)
     
-    print(f"{user1.usr} becomes public.")
+    print(f"{user1.get_usr()} becomes public.")
     user1.change_privacy(private=False)
 
     user_2 = input("Enter your username: ")
@@ -159,23 +169,23 @@ if __name__ == "__main__":
     show_info(user2)
     print()
 
-    print(f"{user1.usr} wants to be friends with {user2.usr}")
-    if user1 not in user2.friends_list:
+    print(f"{user1.get_usr()} wants to be friends with {user2.get_usr()}")
+    if user1 not in user2.get_friends_list():
         user1.add_friend(user2)
-    print("USER1", user1._incoming_reqs, user1._outgoing_reqs)
+    print("USER1", user1.get_incoming(), user2.get_outgoing())
     print()
-    print("USER2", user2._incoming_reqs, user2._outgoing_reqs)
+    print("USER2", user2.get_incoming(), user2.get_outgoing())
     print()
 
-    print(f"{user2.usr} accepts {user1.usr}'s friend request.")
+    print(f"{user2.get_usr()} accepts {user1.get_usr()}'s friend request.")
     user2.acc_or_rej(user1, True)
 
-    print("USER1", user1._incoming_reqs, user1._outgoing_reqs)
+    print("USER1", user1.get_incoming(), user1.get_outgoing())
     print()
-    print("USER2", user2._incoming_reqs, user2._outgoing_reqs)
+    print("USER1", user2.get_incoming(), user2.get_outgoing())
     print()
 
-    print("USER1", user1.friends_list)
+    print("USER1", user1.get_friends_list())
     print()
-    print("USER2", user2.friends_list)
+    print("USER2", user2.get_friends_list())
     print()
