@@ -122,7 +122,6 @@ class Table:
         for i in range(len(self._table_num)):
             if int(value)==int(self._table_num[i]):
                 self._schedule[self._str_times[i]].append(course_name)
-    #_____________________________________________________________________________________________________    
 
     def reset(self):
         #reset the entire table 

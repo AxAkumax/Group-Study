@@ -5,7 +5,7 @@ import Calendar
 
 def run():
     #main function
-    x = Table(1,12.0,20.50)
+    x = Table(0.167,12.0,21.50)
     print(x.get_times())
     b = Calendar.getCourse(12120)
     a = Calendar.getCourse(13262)
