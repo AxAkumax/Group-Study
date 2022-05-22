@@ -114,6 +114,7 @@ class Table:
         #print(new_start, "=",new_end)
         return (new_start,new_end)
 
+        
 
     def array_schedule_times(self,value:float, course_name:str):
         #takes a time and compares it with the time schedule and adds its it to the dictionary of times it falls under
@@ -132,4 +133,3 @@ class Table:
         
         #delete all previously stored values
         self._str_times,self._table_num,self._schedule = [],[],dict()
-    
