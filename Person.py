@@ -17,6 +17,12 @@ class Person:
         self.study_list = []
         #Person.num_users +=1
 
+    def get_schedule(self) -> str:
+         """Returns student's schedule."""
+         return self._schedule
+    
+
+
     
     
     
