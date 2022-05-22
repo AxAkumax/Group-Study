@@ -5,12 +5,12 @@ import Calendar
 
 def run():
     #main function
-    x = Table(1.0,12.0,20.50)
+    x = Table(1.1,7.20,20.50)
     print(x.get_times())
-    b = Calendar.getCourse(12120)
-    a = Calendar.getCourse(13262)
-    m = [b,a]
-    print(x.create_schedule(m))
+    b = Calendar.getCourse(68010)
+    #a = Calendar.getCourse(44328)
+    #m = [b,a]
+    #print(x.create_schedule(m))
 
 if __name__=='__main__':
     run()
