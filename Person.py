@@ -1,6 +1,6 @@
 import re
-from sys import ps1
-from urllib.parse import _NetlocResultMixinBytes
+#from sys import ps1
+#from urllib.parse import _NetlocResultMixinBytes
 import userdatabase as user_db
 
 class Person:
@@ -213,8 +213,7 @@ class Person:
     
 
 if __name__ == "__main__":
-    p1 = Person("user1@gmail.com")
-    p2 = Person("user2@gmail.com")
+    pass
     # def show_info(user:Person) -> None:
     #     print(f"INFO ABOUT {user.get_email()}")
     #     print("PRIVACY", user.private)
