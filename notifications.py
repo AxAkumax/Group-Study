@@ -9,6 +9,7 @@ class LN:
 class Notification:
     def __init__(self) -> None:
         self._stack = LN()
+        
     def add_message(self, msg: str) -> None:
         #adds the new notification to the top of the stack
         temp = self._stack

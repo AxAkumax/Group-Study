@@ -88,7 +88,7 @@ class Table:
 
             # from 12:00AM-6:00PM = you get start = 12:00 & end =6:00
             
-    #_____________________________heler functions for the schedule________________________________________
+    #_____________________________helper functions for the schedule________________________________________
 
     def convert_string_to_decimal(self, value:str):
         #converts a time 12:00PM to 12.00
