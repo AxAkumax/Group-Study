@@ -8,6 +8,15 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
+# def checkServer(p: Person):
+#     doc_ref = db.collection(u'users').document(p.email).get()
+#     doc_dict = doc_ref.to_dict()
+#     print(doc_dict)
+#     if p.email in doc_dict:
+#         return True
+#     else:
+#         return False
+
 def addUser(p: Person):
     doc_ref = db.collection(u'users').document(p.email)
     doc_ref.set({
@@ -35,6 +44,11 @@ if __name__ == "__main__":
 
     addUser(p1)
     addUser(p2)
+
+    #assert checkServer(p1), "p1 not found"
+
+    print(f'{p1.email} checks the schedule of {p2.email}')
+    
 
     retrieveSchedule(p1)
     retrieveSchedule(p2)
