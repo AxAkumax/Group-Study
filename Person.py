@@ -1,5 +1,5 @@
 import re
-
+import userdatabase as user_db
 
 class Person:
     num_users = 0
@@ -64,7 +64,21 @@ class Person:
             first_name = input("Enter last name: ")
         self.last_name = last_name
 
-        # TO DO: Add student account to the larger database
+        # Add student account to the larger database
+        doc_ref = user_db.db.collections(u'users').document(self.email)
+        doc_ref.set({
+            u'email': self.email,
+            u'password': self.pwd,
+            u'first name': self.first_name,
+            u'last name': self.last_name,
+            u'private': self.private,
+            u'schedule': self._schedule,
+            u'friends list': self.friends_list,
+            u'study list': self.study_list,
+            u'incoming reqs': self.get_incoming(),
+            u'outgoing reqs': self.get_outgoing(),
+        })
+
 
     def _load_acc(self) -> None: #, database):
         pass
@@ -85,7 +99,6 @@ class Person:
             # self.private = 
             # self._schedule =
             # self.friends_list =
-            # self.study_list =
             # self.study_list =
 
             # self._incoming_reqs = 
