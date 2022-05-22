@@ -1,11 +1,22 @@
 import re
+from urllib.parse import _NetlocResultMixinBytes
 import userdatabase as user_db
 
 class Person:
     num_users = 0
 
-    def __init__(self, email):
-        self.email = email
+    def __init__(self):
+        self.email = "student@gmail.com"
+        self._pwd = "mypwd123"
+        self.first_name = "Bob"
+        self.last_name = "Bobbyson"
+        self.private = True
+        self.schedule =  None
+        self.study_list = []
+    
+
+
+    
 
     # def __init__(self, create_acc:bool) -> None: # usr:str) -> None:
     #     """Initializes student's account information. Email functions as username."""
@@ -15,13 +26,13 @@ class Person:
     #     self.friends_list = []
     #     self.study_list = [] # ???
 
-    def __init__(self, usr: str, create_acc:bool) -> None: # usr:str) -> None:
+    #def __init__(self, usr: str, create_acc:bool) -> None: # usr:str) -> None:
         """Initializes student's account information. Email functions as username."""
         # Setup default account information
-        self.private = True # acc is private by default
-        self._schedule = None # <--- Calendar() object? visible to others if public
-        self.friends_list = []
-        self.study_list = [] # ???
+        #self.private = True # acc is private by default
+        #self._schedule = None # <--- Calendar() object? visible to others if public
+        #self.friends_list = []
+        #self.study_list = [] # ???
 
 
     #     if create_acc:
