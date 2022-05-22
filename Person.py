@@ -11,6 +11,7 @@ class Person:
     #     self._schedule = None # <--- Calendar() object? visible to others if public
     #     self.friends_list = []
     #     self.study_list = [] # ???
+
     def __init__(self, usr: str, create_acc:bool) -> None: # usr:str) -> None:
         """Initializes student's account information. Email functions as username."""
         # Setup default account information
@@ -71,7 +72,6 @@ class Person:
     #         print("Invalid last name.")
     #         first_name = input("Enter last name: ")
     #     self.last_name = last_name
-
     #     # Add student account to the larger database
     #     doc_ref = user_db.db.collection(u'users').document(self.email)
     #     doc_ref.set({
@@ -87,6 +87,7 @@ class Person:
     #         u'outgoing reqs': self.get_outgoing(),
     #     })
         # Add student account to the larger database
+
 
 
     # def _load_acc(self) -> None: #, database):
