@@ -8,14 +8,9 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-# def checkServer(p: Person):
-#     doc_ref = db.collection(u'users').document(p.email).get()
-#     doc_dict = doc_ref.to_dict()
-#     print(doc_dict)
-#     if p.email in doc_dict:
-#         return True
-#     else:
-#         return False
+def checkServer(email:str):
+    doc_ref = db.collection(u'users').document(email).get()
+    return doc_ref.exists
 
 def addUser(p: Person):
     doc_ref = db.collection(u'users').document(p.email)
@@ -32,8 +27,8 @@ def addUser(p: Person):
             #u'outgoing reqs': p.get_outgoing(),
         })
 
-def retrieveSchedule(p: Person):
-    users_ref = db.collection(u'users').document(p.email)#.document(u'schedule')
+def retrieveSchedule(email:str):
+    users_ref = db.collection(u'users').document(email)#.document(u'schedule')
     user = users_ref.get()
     user_dict = user.to_dict()
     print(user_dict['schedule'])
@@ -45,11 +40,11 @@ if __name__ == "__main__":
     addUser(p1)
     addUser(p2)
 
-    #assert checkServer(p1), "p1 not found"
-
     print(f'{p1.email} checks the schedule of {p2.email}')
     
-
-    retrieveSchedule(p1)
-    retrieveSchedule(p2)
+    friend = input("Enter the email of the student you'd like to study with: ")
+    if checkServer(friend):
+        retrieveSchedule(friend)
+    else:
+        print(f"Error: student with email {friend} not found")
     

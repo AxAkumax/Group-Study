@@ -1,4 +1,5 @@
 import re
+from Table import Table
 #from sys import ps1
 #from urllib.parse import _NetlocResultMixinBytes
 #import userdatabase as user_db
@@ -13,18 +14,14 @@ class Person:
         self.first_name = "Bob"
         self.last_name = "Bobbyson"
         self.private = True
-        self.schedule =  None
+        self.schedule =  None # change to Calendar
         self.study_list = []
         #Person.num_users +=1
 
     def get_schedule(self) -> str:
          """Returns student's schedule."""
          return self._schedule
-    
 
-
-    
-    
     
 
 
