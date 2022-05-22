@@ -46,5 +46,5 @@ if __name__ == "__main__":
     if checkServer(friend):
         retrieveSchedule(friend)
     else:
-        print(f"Error: student with email {friend} not found")
+        print(f"Error: studentg with email {friend} not found")
     
