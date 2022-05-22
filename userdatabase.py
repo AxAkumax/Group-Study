@@ -23,10 +23,19 @@ def addUser(p: Person):
             #u'outgoing reqs': p.get_outgoing(),
         })
 
+def retrieveSchedule(p: Person):
+    users_ref = db.collection(u'users').document(p.email)#.document(u'schedule')
+    user = users_ref.get()
+    user_dict = user.to_dict()
+    print(user_dict['schedule'])
+
 if __name__ == "__main__":
     p1 = Person("user1@gmail.com")
     p2 = Person("user2@gmail.com")
 
     addUser(p1)
     addUser(p2)
+
+    retrieveSchedule(p1)
+    retrieveSchedule(p2)
     
