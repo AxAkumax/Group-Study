@@ -67,10 +67,53 @@ class Table:
 
     def get_times(self):
         return self._str_times
+    
+    def create_str_num_table_dict(self):
+        str_num_dict = dict()
+        for i in range(len(self._table_num)):
+            dict[self._table_num[i]]=self._str_times[i]
+
+    def create_schedule(self, course_list:Course):
+        #makes a dictionary of the time schedule with the Course objects
+        self._schedule = dict()
+        for i in self._str_times:
+            self._schedule[i]=[]
+
+        for i in course_list:
+            #type of i is a Course object
+            times = i.get_time().split("-")
+            value1,value2 = times[0],times[1]
+            start, end = self.convert_string_to_decimal(value1),self.convert_string_to_decimal(value2)
+            self.array_schedule_times(start,i.get_name())
+
+            # from 12:00AM-6:00PM = you get start = 12:00 & end =6:00
+            
+    #_____________________________heler functions for the schedule________________________________________
+
+    def convert_string_to_decimal(self, value:str):
+        #converts a time 12:00PM to 12.00
+
+        value = value[:value.length()-2]
+        value1,value2 = value.split[":"]
+        
+        return float(value1)+(float(value2)/100)
+
+    def array_schedule_times(self,value:float, course_name:str):
+        #takes a time and compares it with the time schedule and adds its it to the dictionary of times it falls under
+        # ; e.g 12:10 falls under 12:00pm (course to that Time)
+
+        for i in range(len(self._start_num)):
+            if int(value)==int(self._start_num[i]):
+                self._schedule[self._str_times[i]].append(course_name)
+    #_____________________________________________________________________________________________________    
 
     def reset(self):
+        #reset the entire table 
         self._time_spacing = float(input("Spacing The Time In the Day: "))
         while self._time_spacing<=0 and self.time_spacing>2:
             print("INVALID INPUT"+"\n"+"Maximum Hours Must Be Greater than 0 and less than or equal to 2")
             self._time_spacing = float(input("Spacing The Time In the Day: "))
         
+        #delete all previously stored values
+        self._str_times,self._table_num,self._schedule = [],[],dict()
+    
