@@ -33,11 +33,15 @@ class Table:
         self._table_num = []
         start = self._start_num
         while start<=self._end_num:
-          if start%1 >= 0.60:
-              value = start+1
-              start = value - start%1
+          value = (math.modf(start))[0]
+          print(value)
+          if value+0.001>= 0.60:
+              value1 = ((math.modf(start))[1])+1
+              start = value1
           self._table_num.append(start)
           start+=self._time_spacing
+          print("start",start)
+          
         return self._table_num
     
     def create_string_table(self):
