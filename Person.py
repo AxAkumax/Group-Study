@@ -13,6 +13,10 @@ class Person:
         self.private = True
         self.schedule =  None
         self.study_list = []
+        #Person.num_users +=1
+
+    
+    
     
 
 

@@ -91,20 +91,36 @@ class Table:
             
     #_____________________________helper functions for the schedule________________________________________
 
-    def convert_string_to_decimal(self, value:str):
-        #converts a time 12:00PM to 12.00
-
-        value = value[:value.length()-2]
-        value1,value2 = value.split[":"]
+    def convert_string_to_decimal(self, start, end):
+        #converts a time 5:00-7:00p to 12.00
+        #pm must have p and am has none
+        new_end = 0.0
+        new_start = 0.0
+        hour = "AM"
+        if "p" in end:
+            value = end[:len(end)-1]
+            value1,value2 = value.strip().split(":")
+            new_end = float(value1)+(float(value2)/100)+12
+            hour = "PM"
+        else:
+            value1,value2 = end.strip().split(":")
         
-        return float(value1)+(float(value2)/100)
+        value1,value2 =  value.strip().split(":")
+        new_start = float(value1)+(float(value2)/100)
+        
+        if hour=="PM" and new_start<12:
+            new_start+=12
+        #print(new_start, "=",new_end)
+        return (new_start,new_end)
+
+        
 
     def array_schedule_times(self,value:float, course_name:str):
         #takes a time and compares it with the time schedule and adds its it to the dictionary of times it falls under
         # ; e.g 12:10 falls under 12:00pm (course to that Time)
 
-        for i in range(len(self._start_num)):
-            if int(value)==int(self._start_num[i]):
+        for i in range(len(self._table_num)):
+            if int(value)==int(self._table_num[i]):
                 self._schedule[self._str_times[i]].append(course_name)
     #_____________________________________________________________________________________________________    
 
@@ -117,4 +133,3 @@ class Table:
         
         #delete all previously stored values
         self._str_times,self._table_num,self._schedule = [],[],dict()
-    
