@@ -4,6 +4,7 @@ import userdatabase as user_db
 class Person:
     num_users = 0
 
+<<<<<<< HEAD
     # def __init__(self, create_acc:bool) -> None: # usr:str) -> None:
     #     """Initializes student's account information. Email functions as username."""
     #     # Setup default account information
@@ -11,6 +12,15 @@ class Person:
     #     self._schedule = None # <--- Calendar() object? visible to others if public
     #     self.friends_list = []
     #     self.study_list = [] # ???
+=======
+    def __init__(self, usr: str, create_acc:bool) -> None: # usr:str) -> None:
+        """Initializes student's account information. Email functions as username."""
+        # Setup default account information
+        self.private = True # acc is private by default
+        self._schedule = None # <--- Calendar() object? visible to others if public
+        self.friends_list = []
+        self.study_list = [] # ???
+>>>>>>> 76846cba82bc4f6de33d853d04b8e5f238ff17d2
 
 
     #     if create_acc:
@@ -65,6 +75,7 @@ class Person:
     #         first_name = input("Enter last name: ")
     #     self.last_name = last_name
 
+<<<<<<< HEAD
     #     # Add student account to the larger database
     #     doc_ref = user_db.db.collection(u'users').document(self.email)
     #     doc_ref.set({
@@ -79,6 +90,9 @@ class Person:
     #         u'incoming reqs': self.get_incoming(),
     #         u'outgoing reqs': self.get_outgoing(),
     #     })
+=======
+        # Add student account to the larger database
+>>>>>>> 76846cba82bc4f6de33d853d04b8e5f238ff17d2
 
 
     # def _load_acc(self) -> None: #, database):

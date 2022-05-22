@@ -32,6 +32,7 @@ class Notification:
             temp = self._stack
             while(temp.value != None and temp.value != message):
                 temp = temp.next
+                
 
 
 
